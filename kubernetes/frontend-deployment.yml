@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: frontend
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - image: "frontend:latest" # Build your own images
+          name: frontend
+          ports:
+          - containerPort: 80
+          env:
+          - name: NODE_ENV
+            value: "development"
+          resources: {}
+status: {}

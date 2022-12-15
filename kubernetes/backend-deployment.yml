@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: backend
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: backend
+    spec:
+      containers:
+        - image: "backend:latest" # Build your own images
+          name: backend
+          env:
+          - name: PORT
+            value: "3000"
+          - name: NODE_ENV
+            value: "development" 
+          - name: MONGO_DB_CONNECTION_STRING
+            value: "secret"
+          - name: MONGO_DB_NAME
+            value: "secret"
+          - name: REDIS_URI
+            value: "secret"
+          ports:
+            - name: http
+              containerPort: 3000
+          resources: {}
+      dnsPolicy: Default
+status: {}
